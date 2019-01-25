@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('search') }}" data-toggle="validator" method="post">
+        <fieldset>
+            <div class="form-group">
+                <label for="keywords"></label>
+                <input class="form-control" name="keywords" required type="text" placeholder="Keyword(s)" data-error="Did you not want to search for anything?"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Search</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

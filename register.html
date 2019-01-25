@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('register') }}" data-toggle="validator" method="post">
+        <fieldset>
+            <div class="form-group">
+                <label for="username"></label>
+                <input class="form-control" name="username" required type="text" placeholder="Username" data-error="What's your username?"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="email"></label>
+                <input class="form-control" name="email" required type="email" placeholder="Email" data-error="We need your email"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="password"></label>
+                <input class="form-control" name="password" id="password" required type="password" placeholder="Password" data-error="Password please"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <label for="password2"></label>
+                <input class="form-control" name="password2" required type="password" placeholder="Confirm Password" data-match="#password" data-match-error="Uhhh, your passwords don't match"/>
+                <div class="help-block with-errors"></div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Register!</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

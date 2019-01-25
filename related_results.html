@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Related Results
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('related_results') }}" method="post">
+        <div class="row">
+            <div class="col-sm-6">
+                <ul>
+                    {% for result in results1 %}
+                        <p><input type="checkbox" input name="check" value="{{ result["videoId"] }}"/><b>   {{ result["title"] }}</b></p>
+                        <p><iframe width="420" height="315" src="https://www.youtube.com/embed/{{ result["videoId"] }}"></iframe></p>
+                        <p>{{ result["channel"] }}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <ul>
+                    {% for result in results2 %}
+                        <p><input type="checkbox" input name="check" value="{{ result["videoId"] }}"/><b>   {{ result["title"] }}</b></p>
+                        <p><iframe width="420" height="315" src="https://www.youtube.com/embed/{{ result["videoId"] }}"></iframe></p>
+                        <p>{{ result["channel"] }}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" name="submit" type="submit">Get DMCA</button>
+        </div>
+    </form>
+{% endblock %}

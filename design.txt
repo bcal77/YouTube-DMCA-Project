@@ -1,0 +1,41 @@
+My goal with this project was to create a tool for independent content creators (although any creator could use this application) to 
+help them more quickly find and remove stolen content. I kept the scope to videos found on YouTube. Normally if a creator wants to 
+find infringing videos, they would perform the keyword search on YouTube. They then have to go through the results, clicking on any 
+they suspect is infringing, confirm by watching a bit of the video, copying the URL, and then going back to the search results. This 
+can be a tedious and time consuming process. My application makes this process much more streamline.
+
+I created a web-based application using Python and SQL. Users register an account and have to sign in to use the application. This 
+enables tracking of their search history. The forms for registering an account and logging in include Javascript form validation. Once 
+logged in, users are brought to a search page. They can type in any keywords and submit (e.g. their name or song name). After submitting 
+the keyword(s), their keyword search is saved and assigned a search id. The backend code querys Google's API to perform the keyword 
+search on YouTube, and adds the results to a database table. For the purpose of this project I kept the results to 20. This will show 
+all of the top results, and if the user runs the search for related videos as well, they will be able to find all of the most popular 
+video results. When videos are removed, the top results are updated so the user can keep running the same search in the future. The 
+results are then presented to the user in two columns on a results page. The videos are embedded so that the user can play the videos 
+right there in the search results to confirm that the content is theirs. Next to each result is a checkbox so the user can select any 
+video that is infringing and then submit to move forward. If no videos were selected, the results are deleted from the table and the 
+keyword is removed from their active keyword searches. If the user selected any videos, those videos are marked as infringing in the 
+table and the non-infriging results are removed.
+
+Users have two ways that they can submit their selections. They can either generate a takedown request right away, or they can first 
+perform a search for the videos related to the ones selected. I really wanted to add this functionality since often the most results 
+are found as related videos, but don't appear in the main search. The related search is similar to the main one although instead of 
+querying YouTube based on a keyword, the function searches for related videos for each of the selected videoIds. All of these results 
+are put into the results table and marked as related. The user is again presented with a results page of selectable embedded videos. 
+Once the user goes through all of these results and selects the ones they want, they can submit to get the takedown request. If no new 
+videos were selected, the related search results are deleted from the table and the user is presented with a DMCA with only the original 
+results for that search id included. If any related results are selected, they are marked as infringing, and the non-infringing ones 
+are removed from the table. The DMCA will include these new results along with the original ones for that search. I formatted the 
+DMCA as an email template with the URLs of all of the infringing videos included. Now the user can copy and paste this into an email. 
+Having a more interactive search makes finding any infriging video much faster, and the user is provided with everything they need to 
+request that their content is removed. 
+
+I decided to add another bit of functionality by allowing the user to look up the history of their searches and all of the infringing 
+videos they found. I wanted to add this to make it easier for the user to quickly track whether or not a video was actually removed. 
+The user can go to their history and they are presented with a dropdown populated with all of their unique and active searches. When 
+the user selects which keyword search to check on, all instances of that keyword with their user id is marked in order to retrieve all 
+of the search ids related to it. The database is then queryed to collected all of the videos with those search ids. These results 
+are then displayed to the user, again as selectable embedded videos. When YouTube removes a video, this will be evident in the history 
+results as it will say either that the video was removed by the copyright owner or that it cannot be played. The user can select any 
+video taken down by YouTube and remove it from their active search history (although the record remains in the database).
+

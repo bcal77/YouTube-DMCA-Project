@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('history') }}" method="post">
+        <fieldset>
+            <div class="dropdown">
+                <label for="search_keyword">Select Previous Search</label>
+                <select name="search_keyword">
+                    {% for search in searches %}
+                        <option value="{{ search["keywords"] }}">{{ search["keywords"] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Go!</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

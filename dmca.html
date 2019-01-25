@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    DMCA
+{% endblock %}
+
+{% block main %}
+    <div class="h2">
+        <br>
+        <p>To whom it may concern,</p>
+        <br>
+        <p>Statements of Facts:</p>
+        <ul>
+            <li>I have a good faith belief that use of the copyrighted material is not authorized by the copyright owner, its agent or the law.</li>
+            <li>The information in this written notice is accurate, and under penalty of perjury, I am an agent authorized to act on behalf of the owner, of an exclusive right that has been infringed upon.</li>
+        </ul>
+        <br>
+        <p>Please find the list of copyright infringements below:</p>
+        <br>
+        <p><strong>Originally found on:</strong></p>
+        <p>[URL for your work]</p>
+        <br>
+        <p><strong>Infringing URLs:</strong></p>
+        <ul>
+            {% for url in urls %}
+                <p>https://www.youtube.com/watch?v={{ url["videoId"] }}</p>
+            {% endfor %}
+        </ul>
+        <br>
+        <p>Thank you for your support on this matter.</p>
+        <br>
+    </div>
+{% endblock %}
